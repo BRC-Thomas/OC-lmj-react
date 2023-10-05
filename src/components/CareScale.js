@@ -10,8 +10,22 @@ function CareScale({ scaleValue, careType }) {
       <img src={Water} alt="water-icon" />
     );
 
+    const quantityLabel = {
+      1: 'peu',
+      2: 'modérément',
+      3: 'beaucoup'
+  }
+
+  function handleAlert(scaleValue, careType) {
+    alert(
+      `Cette plante requiert ${quantityLabel[scaleValue]} ${
+          careType === 'light' ? 'de lumière' : "d'arrosage"
+      }`
+  );
+  }
+
   return (
-    <div>
+    <div onClick={() => handleAlert(scaleValue, careType)}>
       {range.map((rangeElem) =>
         scaleValue >= rangeElem ? (
           <span key={rangeElem.toString()}>{scaleType}</span>
